@@ -6,14 +6,14 @@
  * Version:     1.0
  */
 
-$elementor_widgets = array(
-    'posts-with-menu' => '\Elementor\Posts_With_Menu()',
-    'custom-search-form' => '\ElementorPro\Modules\ThemeElements\Widgets\Custom_Search_Form()',
-);
-
 class Elementor_Widgets {
 
 	protected static $instance = null;
+
+	protected $elementor_widgets = array(
+		'before-after-slider' => '\Elementor\Before_After_Slider',
+		'custom-search-form' => '\ElementorPro\Modules\ThemeElements\Widgets\Custom_Search_Form',
+	);
 
 	public static function get_instance() {
 		if ( ! isset( static::$instance ) ) {
@@ -24,7 +24,7 @@ class Elementor_Widgets {
 	}
 
 	protected function __construct() {
-        foreach($elementor_widgets as $slug => $className)
+        foreach($this->elementor_widgets as $slug => $className)
         {
             require_once("widgets/{$slug}.php");
         }
@@ -32,9 +32,9 @@ class Elementor_Widgets {
 	}
 
 	public function register_widgets() {
-        foreach($elementor_widgets as $className)
+        foreach($this->elementor_widgets as $className)
         {
-            \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $className );
+            \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $className() );
         }
 	}
 

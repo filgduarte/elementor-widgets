@@ -27,7 +27,7 @@ class Before_After_Slider extends Widget_Base {
 	}
 	
 	public function get_icon() {
-		return 'fa fa-star-half-alt';
+		return 'eicon-column';
 	}
 	
 	public function get_categories() {
