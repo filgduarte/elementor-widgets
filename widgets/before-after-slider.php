@@ -23,7 +23,7 @@ class Before_After_Slider extends Widget_Base {
 	}
 	
 	public function get_title() {
-		return __('Before/After Slider', 'elementor-widgets');
+		return __('Before/After Slider', 'fil-elementor-widgets');
 	}
 	
 	public function get_icon() {
@@ -46,7 +46,7 @@ class Before_After_Slider extends Widget_Base {
 		$this->add_control(
 			'before_image',
 			[
-				'label' => __( 'Before', 'elementor-widgets' ),
+				'label' => __( 'Before', 'fil-elementor-widgets' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -67,7 +67,7 @@ class Before_After_Slider extends Widget_Base {
         $this->add_control(
 			'after_image',
 			[
-				'label' => __( 'After', 'elementor-widgets' ),
+				'label' => __( 'After', 'fil-elementor-widgets' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -100,19 +100,19 @@ class Before_After_Slider extends Widget_Base {
         }
 
 ?>
-	<div class="bas__container">
-		<div class="bas-after">
+	<div class="few-bas__container">
+		<div class="few-bas-after">
             <?php echo $after_image; ?>
         </div>
-		<div class="bas-before">
+		<div class="few-bas-before">
             <?php echo $before_image; ?>
         </div>
         <div class='bas-slider-button'>
-            <div class="bas-slider-icon">
+            <div class="few-bas-slider-icon">
                 <i class="fas fa-arrows-alt-h"></i>
             </div>
         </div>
-		<input type="range" name='bas-slider' min="0" max="100" value="50" class="bas-slider">
+		<input type="range" name='bas-slider' min="0" max="100" value="50" class="few-bas-slider">
 	</div>
 <?php
 	}

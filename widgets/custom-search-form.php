@@ -21,7 +21,7 @@ class Custom_Search_Form extends Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'Custom Search Form', 'elementor-widgets' );
+		return esc_html__( 'Custom Search Form', 'fil-elementor-widgets' );
 	}
 
 	public function get_icon() {
