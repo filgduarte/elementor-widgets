@@ -15,7 +15,7 @@ class Masked_Element extends Widget_Base {
 	}
 	
 	public function get_title() {
-		return __('Masked Element', 'fil-elementor-widgets');
+		return __('Masked Element', FEW_PLUGIN_SLUG);
 	}
 	
 	public function get_icon() {
@@ -23,7 +23,7 @@ class Masked_Element extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'basic' ];
+		return [ FEW_PLUGIN_SLUG ];
 	}
 	
 	protected function _register_controls() {
@@ -47,7 +47,7 @@ class Masked_Element extends Widget_Base {
         $this->add_control(
 			'width',
 			[
-				'label' => esc_html__( 'Width', 'fil-elementor-widgets' ),
+				'label' => esc_html__( 'Width', FEW_PLUGIN_SLUG ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'range' => [
@@ -72,7 +72,7 @@ class Masked_Element extends Widget_Base {
         $this->add_control(
 			'height',
 			[
-				'label' => esc_html__( 'Height', 'fil-elementor-widgets' ),
+				'label' => esc_html__( 'Height', FEW_PLUGIN_SLUG ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'range' => [
@@ -97,7 +97,7 @@ class Masked_Element extends Widget_Base {
 		$this->add_control(
 			'mask_image',
 			[
-				'label' => __( 'Máscara', 'fil-elementor-widgets' ),
+				'label' => __( 'Máscara', FEW_PLUGIN_SLUG ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -109,22 +109,40 @@ class Masked_Element extends Widget_Base {
 		);
 
 		$this->add_control(
+			'mask_mode',
+			[
+				'label' => esc_html__( 'Mask mode', FEW_PLUGIN_SLUG ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'alpha',
+				'options' => [
+					'' => esc_html__( 'Default', FEW_PLUGIN_SLUG ),
+					'alpha' => esc_html__( 'Alpha', FEW_PLUGIN_SLUG ),
+					'luminance'  => esc_html__( 'Luminance', FEW_PLUGIN_SLUG ),
+					'match-source' => esc_html__( 'Match Source', FEW_PLUGIN_SLUG ),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .few-masked-element' => 'mask-mode: {{VALUE}};-webkit-mask-mode: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
 			'mask_position',
 			[
-				'label' => esc_html__( 'Mask position', 'fil-elementor-widgets' ),
+				'label' => esc_html__( 'Mask position', FEW_PLUGIN_SLUG ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default' => 'center',
 				'options' => [
-					'' => esc_html__( 'Default', 'fil-elementor-widgets' ),
-					'center center' => esc_html__( 'Center', 'fil-elementor-widgets' ),
-					'center left'  => esc_html__( 'Center left', 'fil-elementor-widgets' ),
-					'center right' => esc_html__( 'Center right', 'fil-elementor-widgets' ),
-					'top center' => esc_html__( 'Top center', 'fil-elementor-widgets' ),
-                    'top left' => esc_html__( 'Top left', 'fil-elementor-widgets' ),
-                    'top right' => esc_html__( 'Top right', 'fil-elementor-widgets' ),
-                    'bottom center' => esc_html__( 'Bottom center', 'fil-elementor-widgets' ),
-                    'bottom left' => esc_html__( 'Bottom left', 'fil-elementor-widgets' ),
-                    'bottom right' => esc_html__( 'Bottom right', 'fil-elementor-widgets' ),
+					'' => esc_html__( 'Default', FEW_PLUGIN_SLUG ),
+					'center center' => esc_html__( 'Center', FEW_PLUGIN_SLUG ),
+					'center left'  => esc_html__( 'Center left', FEW_PLUGIN_SLUG ),
+					'center right' => esc_html__( 'Center right', FEW_PLUGIN_SLUG ),
+					'top center' => esc_html__( 'Top center', FEW_PLUGIN_SLUG ),
+                    'top left' => esc_html__( 'Top left', FEW_PLUGIN_SLUG ),
+                    'top right' => esc_html__( 'Top right', FEW_PLUGIN_SLUG ),
+                    'bottom center' => esc_html__( 'Bottom center', FEW_PLUGIN_SLUG ),
+                    'bottom left' => esc_html__( 'Bottom left', FEW_PLUGIN_SLUG ),
+                    'bottom right' => esc_html__( 'Bottom right', FEW_PLUGIN_SLUG ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .few-masked-element' => 'mask-position: {{VALUE}};-webkit-mask-position: {{VALUE}};',
@@ -135,14 +153,14 @@ class Masked_Element extends Widget_Base {
         $this->add_control(
 			'mask_size',
 			[
-				'label' => esc_html__( 'Mask size', 'fil-elementor-widgets' ),
+				'label' => esc_html__( 'Mask size', FEW_PLUGIN_SLUG ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default' => 'auto',
 				'options' => [
-					'' => esc_html__( 'Default', 'fil-elementor-widgets' ),
-					'auto' => esc_html__( 'Auto', 'fil-elementor-widgets' ),
-					'contain'  => esc_html__( 'Contain', 'fil-elementor-widgets' ),
-					'cover' => esc_html__( 'Cover', 'fil-elementor-widgets' ),
+					'' => esc_html__( 'Default', FEW_PLUGIN_SLUG ),
+					'auto' => esc_html__( 'Auto', FEW_PLUGIN_SLUG ),
+					'contain'  => esc_html__( 'Contain', FEW_PLUGIN_SLUG ),
+					'cover' => esc_html__( 'Cover', FEW_PLUGIN_SLUG ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .few-masked-element' => 'mask-size: {{VALUE}};-webkit-mask-size: {{VALUE}};',
@@ -153,17 +171,17 @@ class Masked_Element extends Widget_Base {
         $this->add_control(
 			'mask_repeat',
 			[
-				'label' => esc_html__( 'Repeat mask', 'fil-elementor-widgets' ),
+				'label' => esc_html__( 'Repeat mask', FEW_PLUGIN_SLUG ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default' => 'no-repeat',
 				'options' => [
-					'' => esc_html__( 'Default', 'fil-elementor-widgets' ),
-					'no-repeat' => esc_html__( 'No repeat', 'fil-elementor-widgets' ),
-                    'repeat' => esc_html__( 'Repeat', 'fil-elementor-widgets' ),
-					'repeat-x'  => esc_html__( 'Repeat horizontal', 'fil-elementor-widgets' ),
-					'repeat-y' => esc_html__( 'Repeat vertical', 'fil-elementor-widgets' ),
-					'space' => esc_html__( 'Space', 'fil-elementor-widgets' ),
-					'round' => esc_html__( 'Round', 'fil-elementor-widgets' ),
+					'' => esc_html__( 'Default', FEW_PLUGIN_SLUG ),
+					'no-repeat' => esc_html__( 'No repeat', FEW_PLUGIN_SLUG ),
+                    'repeat' => esc_html__( 'Repeat', FEW_PLUGIN_SLUG ),
+					'repeat-x'  => esc_html__( 'Repeat horizontal', FEW_PLUGIN_SLUG ),
+					'repeat-y' => esc_html__( 'Repeat vertical', FEW_PLUGIN_SLUG ),
+					'space' => esc_html__( 'Space', FEW_PLUGIN_SLUG ),
+					'round' => esc_html__( 'Round', FEW_PLUGIN_SLUG ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .few-masked-element' => 'mask-repeat: {{VALUE}};-webkit-mask-repeat: {{VALUE}};',

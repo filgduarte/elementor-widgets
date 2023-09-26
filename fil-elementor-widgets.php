@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Plugin Name: Elementor Widgets
+ * Plugin Name: Fil Elementor Widgets
  * Description: Some new Elementor widgets
  * Version:     1.0
  * Author:      Filipe Duarte
@@ -10,42 +10,35 @@
  * Text Domain: elementor-widgets
  */
 
-class Fil_Elementor_Widgets {
+define( 'FEW_PLUGIN_NAME', 'Fil Elementor Widgets');
+define( 'FEW_PLUGIN_SLUG', 'fil-elementor-widgets');
+define( 'FEW_ELEMENTOR_WIDGETS',
+		array(
+			'before-after-slider'	=> '\Elementor\Before_After_Slider',
+			'masked-element'		=> '\Elementor\Masked_Element',
+			'custom-search-form'	=> '\ElementorPro\Modules\ThemeElements\Widgets\Custom_Search_Form',
+		)
+);
 
-	protected static $instance = null;
-
-	protected $fil_elementor_widgets = array(
-		'before-after-slider' => '\Elementor\Before_After_Slider',
-		'masked-element' => '\Elementor\Masked_Element',
-		'custom-search-form' => '\ElementorPro\Modules\ThemeElements\Widgets\Custom_Search_Form',
-	);
-
-	public static function get_instance() {
-		if ( ! isset( static::$instance ) ) {
-			static::$instance = new static;
-		}
-
-		return static::$instance;
-	}
-
-	protected function __construct() {
-        foreach($this->fil_elementor_widgets as $slug => $className)
-        {
-            require_once("widgets/{$slug}.php");
-        }
-		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
-	}
-
-	public function register_widgets() {
-        foreach($this->fil_elementor_widgets as $className)
-        {
-            \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $className() );
-        }
-	}
-
+if ( is_plugin_active( 'elementor/elementor.php' ) ) {
+	add_action( 'elementor/widgets/register', 'few_register_widgets' );
+	add_action( 'elementor/elements/categories_registered', 'few_add_widget_categories' );
 }
-add_action( 'init', 'fil_elementor_widgets_init' );
 
-function fil_elementor_widgets_init() {
-	Fil_Elementor_Widgets::get_instance();
+function few_register_widgets( $widgets_manager ) {
+	foreach(FEW_ELEMENTOR_WIDGETS as $slug => $className)
+	{
+		require_once( __DIR__ . "/widgets/{$slug}.php");
+		$widgets_manager->register( new $className() );
+	}
+}
+
+function few_add_widget_categories( $elements_manager ) {
+	$elements_manager->add_category(
+		FEW_PLUGIN_SLUG,
+		[
+			'title' => esc_html__( 'F.E.W.', FEW_PLUGIN_SLUG ),
+			'icon' => 'eicon-apps',
+		]
+	);
 }

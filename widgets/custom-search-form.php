@@ -21,11 +21,15 @@ class Custom_Search_Form extends Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'Custom Search Form', 'fil-elementor-widgets' );
+		return esc_html__( 'Custom Search Form', FEW_PLUGIN_SLUG );
 	}
 
 	public function get_icon() {
 		return 'eicon-site-search';
+	}
+
+	public function get_categories() {
+		return [ FEW_PLUGIN_SLUG ];
 	}
 
 	public function get_keywords() {
