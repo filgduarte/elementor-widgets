@@ -3,7 +3,7 @@
 /*
  * Plugin Name: Fil Elementor Widgets
  * Description: Some new Elementor widgets
- * Version:     1.0
+ * Version:     1.0.1
  * Author:      Filipe Duarte
  * Author URI:  https://filduarte.com.br
  * License:     GPL-2.0+

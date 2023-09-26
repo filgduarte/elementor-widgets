@@ -7,6 +7,6 @@ Widgets included:
 
 - **Before/After Slider**: Shows two images that are revealed as a vertical divider is slid left or right.
 - **Custom Search Form\***: The basic Elementor search form, but you can choose a custom icon.
-- **Masked Element**: Shows a color, image, gradient or video in the shape of any image with alpha channel (transparency).
+- **Masked Element**: Shows a color, image, gradient or video masked by an image shape or luminance.
 
 <sup>\* Requires Elementor Pro</sup>
